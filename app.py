@@ -29,8 +29,9 @@ def get_file_content_as_string(path):
 def load_model():
     import tensorflow as tf
     # Define your model and optimizer
+    custom_optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
     model = tf.keras.models.load_model('mymodel.h5', custom_objects={'Custom>Adam': custom_optimizer})
-    optimizer = tf.keras.optimizers.Adam(lr=0.001)
+    #optimizer = tf.keras.optimizers.Adam(lr=0.001)
     # Define your loss function with L2 regularization
     def custom_loss(y_true, y_pred):
         l2_reg = tf.reduce_sum([tf.nn.l2_loss(w) for w in model.trainable_weights])
