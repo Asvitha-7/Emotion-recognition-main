@@ -27,23 +27,7 @@ def get_file_content_as_string(path):
     
 @st.cache(show_spinner=False)
 def load_model():
-    import tensorflow as tf
-    # Define your model and optimizer
-    custom_optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
-    model = tf.keras.models.load_model('mymodel.h5', custom_objects={'Custom>Adam': custom_optimizer})
-    def custom_loss(y_true, y_pred):
-        l2_reg = tf.reduce_sum([tf.nn.l2_loss(w) for w in model.trainable_weights])
-        loss = tf.losses.mean_squared_error(y_true, y_pred) + 0.001 * l2_reg
-        return loss
-
-    # Compile your model with the custom loss function and optimizer
-    model.compile(loss=custom_loss, optimizer=optimizer)
-    # Train your model
-    model.fit(x_train, y_train, epochs=10, batch_size=32)
-    
-    #optimizer = tf.keras.optimizers.Adam(lr=0.001)
-    # Define your loss function with L2 regularization
-    
+    model=tf.keras.models.load_model('mymodel.h5')
     return model
 def application():
     models_load_state=st.text('\n Loading models..')
