@@ -29,7 +29,7 @@ def get_file_content_as_string(path):
 def load_model():
     
     # Define your custom Adam optimizer
-    custom_optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
+    #custom_optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
 
     # Load your model with the custom_objects argument
     model = tf.keras.models.load_model('mymodel.h5', custom_objects={'Custom>Adam': custom_optimizer})
